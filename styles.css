@@ -1,0 +1,11 @@
+.divArray {
+    display: inline-block;
+    white-space: pre; /*preserve*/
+    font-size: 30px;
+    font-family: Times, Times New Roman, serif;
+    padding: 2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #4a4a4a;
+    border-radius: 5px;
+}
