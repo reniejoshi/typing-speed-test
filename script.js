@@ -4,7 +4,7 @@ const container = document.querySelector('.container');
 const authorElem = document.querySelector('.author');
 const divArray = [];
 
-document.addEventListener("keydown", changeColor);
+/*document.addEventListener("keydown", changeColor);
 
 function changeColor(e) {
     if (e.key === 'Shift' || e.key === 'Backspace') {
@@ -23,7 +23,7 @@ function changeColor(e) {
     if (keyCounter === divArray.length) {
         results();
     }
-}
+}*/
 
 function results() {
     calculateAccuracy();
@@ -58,27 +58,30 @@ function displayResults(accuracy) {
     document.getElementById('accuracy-percentage').innerHTML = accuracy + "%";
 }
 
-async function fetchRandomQuote() {
-    const data = await fetch('https://zenquotes.io/api/random');
-    const result = await data.json();
-    const quoteTxt = result.q;
-    const author = result.a;
+async function fetchRandomText() {
+    let text = [];
 
-    for (let i = 0; i < quoteTxt.length; i++) {
+    // TODO: Display loading progress bar
+    for (let i = 0; i < 10; i++) {
+        const data = await fetch('https://random-word-api.herokuapp.com/word?number=1&diff=1');
+        const result = await data.json();
+
+        console.log(result[0]);
+        text.concat(result[0].split(""));
+    }
+
+    for (let i = 0; i < text.length; i++) {
         divArray[i] = document.createElement('div');
-        divArray[i].textContent = quoteTxt[i];
+        divArray[i].textContent = text[i];
         divArray[i].className = "divArray";
     }
     for (let i = 0; i <= divArray.length; i++) {
         container.appendChild(divArray[i]);
     }
-
-    authorElem.textContent = author;
-    console.log(author);
 }
 
 function playTypingTest() {
-    fetchRandomQuote();
+    fetchRandomText();
     displayQuote();
 }
 
