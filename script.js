@@ -5,44 +5,39 @@ const progressBar = document.querySelector('#bar');
 const divArray = [];
 
 function changeColor(e) {
-    if (e.key === 'Shift' || e.key === 'Backspace') {
+    // TODO: Allow backspace
+    if (e.key == 'Shift' || e.key == 'Backspace') {
         return;
-    }
-
-    if (text[keyCounter] === e.key) {
+    } else if (keyCounter == text.length) { // TODO: Check this condition without keydown event listener
+        document.removeEventListener('keydown', changeColor);
+        results();
+    } else if (text[keyCounter] == e.key) {
         divArray[keyCounter].classList.add('correct-key');
-    }
-    if (text[keyCounter] !== e.key) {
+    } else {
         divArray[keyCounter].classList.add('incorrect-key');
     }
 
     keyCounter++;
-
-    if (keyCounter === divArray.length) {
-        results();
-    }
 }
 
 function results() {
     calculateAccuracy();
     //calculateWPM();
-    displayResults();
+    //displayResults();
 }
 
 function calculateAccuracy() {
-    let numOfCorrect = 0;
-    let accuracy;
+    let correctLetterCount = 0;
 
     for (let i = 0; i < divArray.length; i++) {
-        // TODO: Check class list instead
-        if(divArray[i].style.color === 'rgb(149, 197, 144)') {
-            numOfCorrect += 1;
+        if(divArray[i].classList.contains('correct-key')) {
+            correctLetterCount += 1;
         }
     }
 
-    accuracy = numOfCorrect * 100 / divArray.length;
+    const accuracy = correctLetterCount * 100 / divArray.length;
 
-    displayResults(accuracy);
+    console.log("Accuracy: " + accuracy + "%");
 }
 
 function calculateWPM() {
