@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Lucida Console", "Courier New", monospace;
 }
 
 body {
@@ -61,39 +62,18 @@ body {
     color: rgb(149, 197, 144);
 }
 
-.options-icons {
+.nav-bar {
     height: 5vh;
     width: 100vw;
     display: flex;
     align-items: center;
-    background-image: linear-gradient(180deg, #0b85bb, #5cb5db);
-}
-
-.options-icons h2 {
-    /*text-align: center;*/
-    color: #fff;
-    font-size: 0.75em;
-}
-
-.options-icons ul {
-    margin-left: auto;
-    list-style-type: none;
-    display: flex;
-}
-
-ul li {
-    width: fit-content;
-    height: 100%;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    margin: 0 10px 0px 0;
-    cursor: pointer;
+    background-color: #7fc8f8;
 }
 
-i {
+.nav-bar h2 {
     color: #fff;
-    font-size: 15px;
+    font-size: 1.5em;
 }
 
 .container {
