@@ -1,9 +1,9 @@
 let keyCounter = 0;
-let text;
+let text = [];
 const container = document.querySelector('.container');
 const divArray = [];
 
-/*document.addEventListener("keydown", changeColor);
+document.addEventListener("keydown", changeColor);
 
 function changeColor(e) {
     if (e.key === 'Shift' || e.key === 'Backspace') {
@@ -22,7 +22,7 @@ function changeColor(e) {
     if (keyCounter === divArray.length) {
         results();
     }
-}*/
+}
 
 function results() {
     calculateAccuracy();
@@ -58,15 +58,14 @@ function displayResults(accuracy) {
 }
 
 async function fetchRandomText() {
-    let text = [];
-
     // TODO: Display loading progress bar
     for (let i = 0; i < 10; i++) {
         const data = await fetch('https://random-word-api.herokuapp.com/word?number=1&diff=1');
         const result = await data.json();
 
         console.log(result[0]);
-        text.push(...result[0].split(""));
+        
+        text.push(...result[0].split(""), (i < 9) ? " " : "");
     }
 
     for (let i = 0; i < text.length; i++) {
