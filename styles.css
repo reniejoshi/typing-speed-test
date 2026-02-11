@@ -1,11 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: "poppins", sans-serif;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .divArray {
+    min-width: 20px;
+    width: fit-content;
+    text-align: center;
     display: inline-block;
     white-space: pre; /*preserve*/
     font-size: 30px;
-    font-family: Times, Times New Roman, serif;
     padding: 2px;
     margin-top: 5px;
     margin-bottom: 5px;
     color: #4a4a4a;
+}
+
+.divArray.active {
+    border-bottom: solid 4px #3295db;
+    color: #3295db;
+    background-color: #3295db;
+}
+
+.divArray.correct-key {
     border-radius: 5px;
+    color: #95c590;
+    background-color: #edf7e7;
+}
+
+.divArray.incorrect-key {
+    border-radius: 5px;
+    color: #d55b60;
+    background-color: #ffdcd9;
+}
+
+#score {
+    text-align: center;
+}
+
+#complete {
+    font-size: 25px;
+}
+
+#test-name {
+    font-size: 30px;
+}
+
+#accuracy {
+    font-size: 25px;
+}
+
+#accuracy-percentage {
+    color: rgb(149, 197, 144);
+}
+
+.options-icons {
+    height: 5vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(180deg, #0b85bb, #5cb5db);
+}
+
+.options-icons h2 {
+    /*text-align: center;*/
+    color: #fff;
+    font-size: 0.75em;
+}
+
+.options-icons ul {
+    margin-left: auto;
+    list-style-type: none;
+    display: flex;
+}
+
+ul li {
+    width: fit-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px 0px 0;
+    cursor: pointer;
+}
+
+i {
+    color: #fff;
+    font-size: 15px;
+}
+
+.container {
+    white-space: wrap;
+    background-color: #fff;
+    width: 75%;
+    padding: 2em;
+}
+
+.author {
+    text-align: center;
+    font-weight: 600;
+    padding: 1rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #707b7c;
 }

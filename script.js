@@ -1,20 +1,8 @@
-const text = "In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since.\n\n\"Whenever you feel like criticizing any one,\" he told me, \"just remember that all the people in this world haven't had the advantages that you've had.\"\n\nHe didn't say any more but we've always been unusually communicative in a reserved way, and I understood that he meant a great deal more than that. In consequence I'm inclined to reserve all judgments, a habit that has opened up many curious natures to me and also made me the victim of not a few veteran bores. The abnormal mind is quick to detect and attach itself to this quality when it appears in a normal person, and so it came about that in college I was unjustly accused of being a politician, because I was privy to the secret griefs of wild, unknown men. Most of the confidences were unsought\u2014frequently I have feigned sleep, preoccupation, or a hostile levity when I realized by some unmistakable sign that an intimate revelation was quivering on the horizon\u2014for the intimate revelations of young men or at least the terms in which they express them are usually plagiaristic and marred by obvious suppressions.";
-//text will later be defined by switch
-let newColor;
-let newBackgroundColor;
 let keyCounter = 0;
-
+let text;
+const container = document.querySelector('.container');
+const authorElem = document.querySelector('.author');
 const divArray = [];
-
-for (let i = 0; i < text.length; i++) {
-    divArray[i] = document.createElement('div');
-    divArray[i].textContent = text[i];
-    divArray[i].className = "divArray";
-    for (let i = divArray.length - 1; i >= 0; i--) {
-        document.body.insertBefore(divArray[i], document.body.firstChild);
-    }
-}
-
 
 document.addEventListener("keydown", changeColor);
 
@@ -24,16 +12,78 @@ function changeColor(e) {
     }
 
     if (text[keyCounter] === e.key) {
-        newColor = '#95c590';
-        newBackgroundColor = '#edf7e7';
+        divArray[keyCounter].classList.add('correct-key');
     }
     if (text[keyCounter] !== e.key) {
-        newColor = '#d55b60';
-        newBackgroundColor = '#ffdcd9';
+        divArray[keyCounter].classList.add('incorrect-key');
     }
 
-    divArray[keyCounter].style.color = newColor;
-    divArray[keyCounter].style.backgroundColor = newBackgroundColor;
+    keyCounter++;
 
-    keyCounter += 1;
+    if (keyCounter === divArray.length) {
+        results();
+    }
 }
+
+function results() {
+    calculateAccuracy();
+    //calculateWPM();
+    displayResults();
+}
+
+function calculateAccuracy() {
+    let numOfCorrect = 0;
+    let accuracy;
+
+    for (let i = 0; i < divArray.length; i++) {
+        if(divArray[i].style.color === 'rgb(149, 197, 144)') {
+            numOfCorrect += 1;
+        }
+    }
+
+    accuracy = numOfCorrect * 100 / divArray.length;
+
+    displayResults(accuracy);
+}
+
+function calculateWPM() {
+    const seconds = 60;
+    const WPM = words / seconds;
+}
+
+function displayResults(accuracy) {
+    document.getElementById('complete').innerHTML = "Typing Test Complete!";
+    document.getElementById('test-name').innerHTML = "You typed the <b>Accuracy Calculator Typing Test</b>";
+    document.getElementById('accuracy').innerHTML = "Your accuracy was ";
+    document.getElementById('accuracy-percentage').innerHTML = accuracy + "%";
+}
+
+async function fetchRandomQuote() {
+    const data = await fetch('https://zenquotes.io/api/random');
+    const result = await data.json();
+    const quoteTxt = result.q;
+    const author = result.a;
+
+    for (let i = 0; i < quoteTxt.length; i++) {
+        divArray[i] = document.createElement('div');
+        divArray[i].textContent = quoteTxt[i];
+        divArray[i].className = "divArray";
+    }
+    for (let i = 0; i <= divArray.length; i++) {
+        container.appendChild(divArray[i]);
+    }
+
+    authorElem.textContent = author;
+    console.log(author);
+}
+
+function playTypingTest() {
+    fetchRandomQuote();
+    displayQuote();
+}
+
+function displayQuote() {
+    
+}
+
+window.addEventListener('load', playTypingTest);
