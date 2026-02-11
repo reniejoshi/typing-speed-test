@@ -4,8 +4,6 @@ const container = document.querySelector('.container');
 const progressBar = document.querySelector('#bar');
 const divArray = [];
 
-document.addEventListener("keydown", changeColor);
-
 function changeColor(e) {
     if (e.key === 'Shift' || e.key === 'Backspace') {
         return;
@@ -36,6 +34,7 @@ function calculateAccuracy() {
     let accuracy;
 
     for (let i = 0; i < divArray.length; i++) {
+        // TODO: Check class list instead
         if(divArray[i].style.color === 'rgb(149, 197, 144)') {
             numOfCorrect += 1;
         }
@@ -61,12 +60,12 @@ function displayResults(accuracy) {
 async function fetchRandomText() {
     let progressBarWidth = 0;
     for (let i = 0; i < 10; i++) {
-        const data = await fetch('https://random-word-api.herokuapp.com/word?number=1&diff=1');
-        const result = await data.json();
+        const response = await fetch('https://random-word-api.herokuapp.com/word?number=1&diff=1');
+        const words = await response.json();
 
-        console.log(result[0]);
+        console.log(words[0]);
         
-        text.push(...result[0].split(""), (i < 9) ? " " : "");
+        text.push(...words[0].split(""), (i < 9) ? " " : "");
 
         progressBarWidth += 10;
         progressBar.style.width = progressBarWidth + "%";
@@ -80,13 +79,9 @@ async function fetchRandomText() {
     }
 }
 
-function playTypingTest() {
-    fetchRandomText();
-    displayQuote();
+async function playTypingGame() {
+    await fetchRandomText();
+    document.addEventListener("keydown", changeColor);
 }
 
-function displayQuote() {
-    
-}
-
-window.addEventListener('load', playTypingTest);
+window.addEventListener('load', playTypingGame);
