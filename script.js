@@ -1,7 +1,6 @@
 let keyCounter = 0;
 let text;
 const container = document.querySelector('.container');
-const authorElem = document.querySelector('.author');
 const divArray = [];
 
 /*document.addEventListener("keydown", changeColor);
