@@ -66,16 +66,14 @@ async function fetchRandomText() {
         const result = await data.json();
 
         console.log(result[0]);
-        text.concat(result[0].split(""));
+        text.push(...result[0].split(""));
     }
 
     for (let i = 0; i < text.length; i++) {
         divArray[i] = document.createElement('div');
         divArray[i].textContent = text[i];
         divArray[i].className = "divArray";
-    }
-    for (let i = 0; i <= divArray.length; i++) {
-        container.appendChild(divArray[i]);
+        container.append(divArray[i]);
     }
 }
 
