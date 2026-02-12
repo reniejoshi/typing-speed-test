@@ -24,12 +24,6 @@ body {
     color: #4a4a4a;
 }
 
-.divArray.active {
-    border-bottom: solid 4px #3295db;
-    color: #3295db;
-    background-color: #3295db;
-}
-
 .divArray.correct-key {
     border-radius: 5px;
     color: #95c590;
@@ -40,26 +34,6 @@ body {
     border-radius: 5px;
     color: #d55b60;
     background-color: #ffdcd9;
-}
-
-#score {
-    text-align: center;
-}
-
-#complete {
-    font-size: 25px;
-}
-
-#test-name {
-    font-size: 30px;
-}
-
-#accuracy {
-    font-size: 25px;
-}
-
-#accuracy-percentage {
-    color: rgb(149, 197, 144);
 }
 
 .nav-bar {
@@ -81,6 +55,13 @@ body {
     background-color: #fff;
     width: 75%;
     padding: 2em;
+}
+
+.container p {
+    font-size: 25px;
+    text-align: center;
+    align-content: center;
+    margin: 10px;
 }
 
 #progress {
