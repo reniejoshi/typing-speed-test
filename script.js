@@ -39,16 +39,18 @@ function displayScore() {
 
     const accuracy = Math.round(correctLetterCount * 100 / divArray.length);
 
-    console.log("Accuracy: " + accuracy + "%");
-
     const endTime = Date.now();
     const minutes = (endTime - startTime) / 60000
     const wordsPerMinute = Math.round(wordCount / minutes);
-    console.log(wordsPerMinute + " wpm");
 
     divArray.forEach((div) => {
         div.remove();
     });
+    const accuracyP = document.createElement('p');
+    accuracyP.textContent = "Accuracy: " + accuracy + "%";
+    const scoreP = document.createElement('p');
+    scoreP.textContent = "Speed: " + wordsPerMinute + " wpm";
+    container.append(accuracyP, scoreP);
 }
 
 async function fetchRandomText() {
